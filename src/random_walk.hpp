@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 
 using namespace std;
@@ -8,7 +9,7 @@ using namespace std;
 vector<double> RandomWalk(double InitialValue, double Drift, double Volatility, int TimeSteps, double Seed);
 
 // Mu is the poisson-length between each jump, and Sig the intensity of the jump
-vector<double> PoissonRandomWalk (double S0, int Mu, int Sig, int Time, double Seed);
+vector<double> PoissonRandomWalk(double S0, int Mu, int Sig, int Time, double Seed);
 
 /// A lognormal random walk that is cointegrated to another
 vector<double> CointegratedWalk(vector<double> Master, double Leash, double LeashVolatility, double Accuracy);

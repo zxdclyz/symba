@@ -2933,7 +2933,14 @@ gsl_matrix* Momenta (gsl_matrix* M) {
 
 
 
-/// Each run of MarketSimulator() outputs vector<gsl_matrix*> MatrixResults. We then compute S of these runs and save them in a vector of length S called vector<vector<gsl_matrix*>> MultiSim. Now function JointDistributions() gets that MultiSim and accesses the m matrix of all its MatrixResults simulations. It then accesses the [c,r]-element of all S matrices m and outputs their joint distributions over all S matrices and output a matrix similar to m but with twice its number of columns (each column has a range for 10 bins between Xmin and Xmax, and another for the number of counts per bin)
+/// Each run of MarketSimulator() outputs vector<gsl_matrix*> MatrixResults.
+/// We then compute S of these runs and save them in a vector of length S
+/// called vector<vector<gsl_matrix*>> MultiSim. Now function JointDistributions()
+/// gets that MultiSim and accesses the m matrix of all its MatrixResults simulations.
+/// It then accesses the [c,r]-element of all S matrices m and outputs
+/// their joint distributions over all S matrices and output a matrix similar
+/// to m but with twice its number of columns (each column has a range for 10
+/// bins between Xmin and Xmax, and another for the number of counts per bin)
 void JointDistributions(vector<vector<gsl_matrix*>> MultiSim, int m, int Precision) {
     int MSsize = int(MultiSim.size());
     int Size1=int(MultiSim[0][m]->size1);
@@ -3159,9 +3166,15 @@ void HPMarketSimulatorCli() {
                 auto round_output_dir = output_dir / ("__round" + to_string(i));
                 filesystem::create_directory(round_output_dir);
 
+                // 实际模拟启动处
                 job_results.push_back(MarketSimulator(
-                    n_agents, n_stocks, n_steps, rate, (plot ? "On" : "Off"), "PDOff", type_neb, hp_gesture, 0.10, 10,
-                    liquidation_floor, leader_type, cluster_limit, 0, 1, i, -1, 0, round_output_dir, &progresses[i]));
+                    n_agents, n_stocks, n_steps, rate, (plot ? "On" : "Off"),
+                    "PDOff", type_neb, hp_gesture,
+                    0.10, 10,
+                    liquidation_floor, leader_type,
+                    cluster_limit, 0,
+                    1, i, -1, 0,
+                    round_output_dir, &progresses[i]));
             }
 
             return job_results;

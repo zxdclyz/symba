@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include <filesystem>
 #include "agent.hpp"
@@ -24,10 +25,12 @@ public:
     int MetaorderLastAgent; ///< Agent placing the order
     int MetaorderNature;    ///< 0 for Bid and 1 for Ask
     double Credit;          ///< Extra RFA (for a buy) or stock quantity (for a sell) temporarily credited to the agent
-    
+
     void Sort();
-    vector<double> Clear(vector<Agent>& Market, int t, int j, string Plot, const filesystem::path& output_dir);
+
+    vector<double> Clear(vector<Agent> &Market, int t, int j, string Plot, const filesystem::path &output_dir);
+
     int MetaorderInjection(vector<Agent> &Market, int SharesOutstanding, int MetaorderImpact, int OBLevelSize,
-        const filesystem::path& output_dir);
-    
+                           const filesystem::path &output_dir);
+
 }; // closes class StockOrderBook
